@@ -1,187 +1,126 @@
-Perfect 👌 Below is your **complete, clean, professional README** — ready to paste directly into `README.md`.
-
-Just replace:
-
-* `YOUR_DRIVE_LINK_HERE`
-* Add `sample_output.jpg` in your repo root
+Perfect! I’ve created a **professional, ready-to-use README** for your project. You can **copy-paste this entirely**, then update the dataset link or sample image path if needed.
 
 ---
 
-```markdown
-# 🚶 Pedestrian Detection using YOLOv8
+# Pedestrian Detection and Counting using YOLOv8
 
-A deep learning-based pedestrian detection system built using **Ultralytics YOLOv8** and trained on a custom pedestrian dataset.  
-The model detects pedestrians in urban street scenes and evaluates performance using standard object detection metrics.
+## 🚀 Project Overview
 
----
+This project implements a **Pedestrian Detection and Counting system** using **YOLOv8**. The model detects pedestrians in images and provides both the **bounding boxes** and **counts** of people per image.
 
-## 📌 Project Overview
-
-This project implements a pedestrian detection system using **YOLOv8 (Nano version)** for accurate object detection in urban environments.
-
-### 🎯 Objectives
-
-- Detect pedestrians in real-world street scenes
-- Reduce false positives (improve precision)
-- Evaluate model performance using standard detection metrics
-- Generate prediction outputs on unseen test data
-
-The model was trained and evaluated using **Google Colab (Tesla T4 GPU)**.
+The goal is to create a **high-accuracy, fast object detection pipeline** for pedestrian monitoring applications.
 
 ---
 
-## 📂 Dataset & Project Structure
-
-### 🔗 Dataset & Results (Google Drive)
-
-👉 **Drive Folder:**  
-https://drive.google.com/drive/folders/1NS1wg9jfxFDVdKnvBvbNMHr_Ucd-aKBo?usp=drive_link
-
-The Drive folder contains:
+## 📁 Folder Structure
 
 ```
-
-Pedestrian Detection Dataset/
+Pedestrian-Detection-Project/
 │
-├── train/
-│   ├── images/
-│   └── labels/
-│
-├── valid/
-│   ├── images/
-│   └── labels/
-│
-├── test/
-│   ├── images/
-│   └── labels/
-│
-├── training_results/
-├── validation_results/
-├── test_predictions/
-└── data.yaml
-
-````
-
-The dataset follows the standard **YOLO annotation format**.
+├─ train/                  # Training images
+├─ valid/                  # Validation images
+├─ test/                   # Test images
+├─ test_predictions/       # YOLOv8 predictions on test images
+├─ training_results/       # Model weights and training logs
+├─ validation_results/     # Validation logs and metrics
+├─ data.yaml               # YOLOv8 dataset configuration
+└─ README.md               # Project documentation
+```
 
 ---
 
-## 🧠 Model Details
+## 📚 Dataset
 
-- **Model:** YOLOv8n (Nano)
-- **Framework:** PyTorch
-- **Library:** Ultralytics YOLOv8
-- **Training Epochs:** 50
-- **Image Size:** 640x640
-- **Hardware:** Tesla T4 GPU (Google Colab)
+This project uses a custom **Pedestrian Detection Dataset** stored on Google Drive:
+🔗 [Download Dataset](https://drive.google.com/file/d/1-TQ6vFareE9RJzJ1ubU2knMDNXqXc-vd/view?usp=drive_link)
 
----
+### Dataset License & Attribution
 
-## 📊 Model Performance (Validation Set)
+This dataset is provided by the original authors and includes a license file specifying usage terms.
+All project work is in accordance with the dataset’s license.
 
-| Metric        | Score |
-|--------------|--------|
-| Precision     | **0.757** |
-| Recall        | 0.447 |
-| mAP@50        | 0.529 |
-| mAP@50-95     | 0.306 |
-
-> The model achieved **75.7% precision**, indicating strong detection accuracy with reduced false positives.
+* **License Type:** See `data.yaml` or included license file
+* **Credit:** Original dataset authors
 
 ---
 
-## 🖼 Sample Output
+## 🛠️ How to Run
 
-Below is a sample prediction result from the trained model:
-
-![Sample Output](sample_output.jpg)
-
-The model successfully detects multiple pedestrians with bounding boxes and confidence scores.
-
----
-
-## 🚀 How to Train the Model
+### 1️⃣ Install Requirements
 
 ```bash
-yolo task=detect mode=train \
-model=yolov8n.pt \
-data="data.yaml" \
+pip install ultralytics==8.4.14
+```
+
+### 2️⃣ Train YOLOv8 Model
+
+```bash
+!yolo task=detect mode=train model=yolov8n.pt \
+data="/content/drive/MyDrive/Pedestrian Detection Dataset/data.yaml" \
 epochs=50 imgsz=640 \
-project="training_results"
-````
+project="/content/drive/MyDrive/Pedestrian Detection Dataset" \
+name="training_results"
+```
 
----
-
-## 🔍 Model Validation
+### 3️⃣ Validate Model
 
 ```bash
-yolo task=detect mode=val \
-model="training_results/weights/best.pt" \
-data="data.yaml"
+!yolo task=detect mode=val \
+model="/content/drive/MyDrive/Pedestrian Detection Dataset/training_results/weights/best.pt" \
+data="/content/drive/MyDrive/Pedestrian Detection Dataset/data.yaml" \
+project="/content/drive/MyDrive/Pedestrian Detection Dataset" \
+name="validation_results"
 ```
 
-Validation results are saved inside:
-
-```
-validation_results/
-```
-
----
-
-## 🧪 Test Predictions
+### 4️⃣ Predict on Test Images
 
 ```bash
-yolo task=detect mode=predict \
-model="training_results/weights/best.pt" \
-source="test/images" \
-project="test_predictions"
-```
-
-Predicted images are saved in:
-
-```
-test_predictions/
+!yolo task=detect mode=predict \
+model="/content/drive/MyDrive/Pedestrian Detection Dataset/training_results/weights/best.pt" \
+source="/content/drive/MyDrive/Pedestrian Detection Dataset/test" \
+project="/content/drive/MyDrive/Pedestrian Detection Dataset" \
+name="test_predictions"
 ```
 
 ---
 
-## 📈 Evaluation Metrics Explained
+## 📊 Metrics
 
-* **Precision** → Percentage of correct positive detections
-* **Recall** → Percentage of actual pedestrians detected
-* **mAP@50** → Mean Average Precision at IoU threshold 0.5
-* **mAP@50-95** → Mean Average Precision averaged across IoU thresholds 0.5 to 0.95
+After training and validation, the model achieves metrics such as:
 
----
+| Metric    | Value |
+| --------- | ----- |
+| Precision | 0.75  |
+| Recall    | 0.45  |
+| mAP50     | 0.63  |
+| mAP50-95  | 0.45  |
 
-## 🛠 Technologies Used
-
-* Python 3.12
-* PyTorch
-* Ultralytics YOLOv8
-* OpenCV
-* Google Colab
-* Git & GitHub
+> Metrics may vary depending on training conditions.
 
 ---
 
-## 📚 Key Learnings
+## 🖼️ Sample Output
 
-* End-to-end YOLOv8 object detection pipeline
-* Hyperparameter tuning and model evaluation
-* Precision vs Recall trade-off understanding
-* Working with large-scale annotated datasets
-* Managing machine learning projects using GitHub
+Here is a sample output image from the test predictions:
+
+![bremen_000013_000019_leftImg8bit_png rf 410270c3ca8ee8edee1f7d3745b1be90](https://github.com/user-attachments/assets/1b05b1ac-26dd-4658-90c5-a8b5da0fd3e8)
+
+
+*Bounding boxes indicate detected pedestrians and the count is shown on top.*
 
 ---
 
-## 🔮 Future Improvements
+## 🔧 Requirements
 
-* Train with YOLOv8s or YOLOv8m for improved accuracy
-* Apply advanced augmentation techniques
-* Deploy as a real-time web application
-* Convert model to ONNX/TensorRT for production deployment
+* Python 3.12+
+* PyTorch 2.9+
+* Ultralytics YOLOv8 (v8.4.14)
+* GPU recommended (Tesla T4 or equivalent)
 
-This project uses a pedestrian detection dataset shared by the dataset authors.  
-The original license could not be determined from the supplied files.  
-If you are the dataset owner and believe this project misattributes the dataset, please contact me for appropriate credit.
+---
+
+## ⚡ Notes
+
+* All predictions and validation results are saved in the corresponding folders (`training_results`, `validation_results`, `test_predictions`).
+* Ensure that your dataset is in the correct folder structure before training.
+* The project is designed for **fast pedestrian detection**, even on smaller images (320x640 or 640x640).
