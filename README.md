@@ -32,15 +32,8 @@ Pedestrian-Detection-Project/
 ## 📚 Dataset
 
 This project uses a custom **Pedestrian Detection Dataset** stored on Google Drive:
-🔗 [Download Dataset](https://drive.google.com/file/d/1-TQ6vFareE9RJzJ1ubU2knMDNXqXc-vd/view?usp=drive_link)
+🔗 [Download Dataset](https://drive.google.com/drive/folders/1NS1wg9jfxFDVdKnvBvbNMHr_Ucd-aKBo?usp=drive_link).
 
-### Dataset License & Attribution
-
-This dataset is provided by the original authors and includes a license file specifying usage terms.
-All project work is in accordance with the dataset’s license.
-
-* **License Type:** See `data.yaml` or included license file
-* **Credit:** Original dataset authors
 
 ---
 
