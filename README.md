@@ -99,17 +99,6 @@ After training and validation, the model achieves metrics such as:
 
 ---
 
-## 🖼️ Sample Output
-
-Here is a sample output image from the test predictions:
-
-![bremen_000013_000019_leftImg8bit_png rf 410270c3ca8ee8edee1f7d3745b1be90](https://github.com/user-attachments/assets/1b05b1ac-26dd-4658-90c5-a8b5da0fd3e8)
-
-
-*Bounding boxes indicate detected pedestrians and the count is shown on top.*
-
----
-
 ## 🔧 Requirements
 
 * Python 3.12+
