@@ -4,7 +4,7 @@ Perfect! I’ve created a **professional, ready-to-use README** for your project
 
 # Pedestrian Detection and Counting using YOLOv8
 
-## 🚀 Project Overview
+##  Project Overview
 
 This project implements a **Pedestrian Detection and Counting system** using **YOLOv8**. The model detects pedestrians in images and provides both the **bounding boxes** and **counts** of people per image.
 
